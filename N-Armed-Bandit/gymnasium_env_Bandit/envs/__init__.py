@@ -1,1 +1,4 @@
 from gymnasium_env_Bandit.envs.bandit_class import BanditEnv
+from gymnasium_env_Bandit.envs.bandit_class_continuous_switching import BanditEnv1
+from gymnasium_env_Bandit.envs.bandit_class_flipflop import BanditEnv2
+

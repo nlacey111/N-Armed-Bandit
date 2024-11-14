@@ -23,12 +23,10 @@ class BanditEnv(gym.Env):
         self.observation_space = gym.spaces.Box(0, 1, shape=(1,))
         
         # the two machines have different probabilities of giving a reward
-        self.machine_probs = [0.2, 0.7]
+        self.machine_probs = [0.2, .8]
         
         self.iteration = 1
         
-        # info is an empty dictionary
-        self.info = {}
         
     
     def step(self, action): # action = 0 or 1, where 0 is the first machine and 1 is the second machine
@@ -43,8 +41,8 @@ class BanditEnv(gym.Env):
         
         self.iteration = self.iteration + 1
         
-        # info is an empty dictionary
-        info = self.info
+        # info is an empty dictionary, DO NOT WRITE AS SELF.INFO = {} because it will overwrite the class variable
+        info = {}
         
         # not using truncated
         truncated = False
@@ -53,12 +51,12 @@ class BanditEnv(gym.Env):
         return  observation, reward, terminated, truncated, info # must be in thsi order, with these names
     
   
-    def reset(self):
+    def reset(self, seed=None, options={}):
         # reset the iteration
         self.iteration = 1
         
         #reset the observation
         observation = np.array([0])
         
-        return observation, self.info # must be in this order, with these names
+        return observation, {} # must be in this order, with these names
     
